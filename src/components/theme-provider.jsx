@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export function ThemeProvider({
   children,
-  defaultTheme = "system",
+  defaultTheme = "dark",
   storageKey = "vite-ui-theme",
 }) {
   return (

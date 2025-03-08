@@ -10,7 +10,7 @@ export function ModeToggle() {
       variant="outline"
       size="icon"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="cursor-pointer"
+      className="cursor-pointer mr-6 justify-self-end"
     >
       <Sun className="h-5 w-5 dark:hidden" />
       <Moon className="h-5 w-5 hidden dark:block" />

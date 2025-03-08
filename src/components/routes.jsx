@@ -1,25 +1,36 @@
 import App from "./App";
-import Categories from "./Categories";
-import Category from "./Category";
-import EditCategory from "./EditCategory";
-import CreateCategory from "./CreateCategory";
-import DeleteCategory from "./DeleteCategory";
-
-import Games from "./Games";
-import Game from "./Game";
-import EditGame from "./EditGame";
-import CreateGame from "./CreateGame";
-import DeleteGame from "./DeleteGame";
-
-import Home from "./Home";
-import ErrorPage from "./ErrorPage";
+import Letters from "./Letters";
+import MyLetters from "./MyLetters.jsx";
+import DeleteLetter from "./DeleteLetter";
+import AddLetter from "./AddLetter";
+import Membership from "./Membership";
+import Admin from "./Admin";
+import UserInfo from "./UserInfo";
+import Login from "./Login";
+import SignUp from "./SignUp";
 
 const routes = [
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage />,
-    children: [],
+    children: [
+      { index: true, element: <Letters /> },
+      { path: ":page", element: <Letters /> },
+      { path: "/myLetters", element: <MyLetters /> },
+      { path: "/myLetters/deleteLetter/:id", element: <DeleteLetter /> },
+      { path: "/addLetter", element: <AddLetter /> },
+      { path: "/membership", element: <Membership /> },
+      { path: "/admin", element: <Admin /> },
+      { path: "/userInfo", element: <UserInfo /> },
+    ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/sign-up",
+    element: <SignUp />,
   },
 ];
 
