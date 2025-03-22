@@ -1,8 +1,13 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { API_BASE_URL } from "@/lib/api";
-import { createContext, use, useEffect, useState } from "react";
+import { createContext, use, useEffect, useState, useContext } from "react";
+import { States } from "./App";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 export default function Letter({ letter }) {
+  const { authentication } = useContext(States);
+  const navigate = useNavigate();
   const [user, setUser] = useState({});
   useEffect(() => {
     fetch(`${API_BASE_URL}/users/${letter.userid}`, { credentials: "include" })
@@ -18,7 +23,7 @@ export default function Letter({ letter }) {
   return (
     <div
       key={letter.messageid}
-      className="w-[30%] bg-accent rounded-sm  h-65 overflow-hidden"
+      className="w-[30%] bg-accent rounded-sm  h-75 overflow-hidden"
     >
       <div className="flex items-center justify-center w-full bg-primary p-4">
         <div className="border-4 border-orange-300 rounded-full">
@@ -48,8 +53,40 @@ export default function Letter({ letter }) {
           }).format(new Date(letter.timestamp))}
         </p>
         <p className="text-md text-secondary-foreground font-semibold">
-          From : {user.username}
+          From :{" "}
+          {authentication.status === "admin" ||
+          (authentication.status === "member" && user.status == "member") ||
+          authentication.userid == user.userid
+            ? user.username
+            : "anonymous"}
         </p>
+        <div className="flex justify-end gap-3">
+          {authentication.status === "admin" ||
+          authentication.userid === user.userid ? (
+            <Button
+              onClick={() =>
+                navigate(`/myLetters/deleteLetter/${letter.messageid}`)
+              }
+              className="cursor-pointer"
+            >
+              Delete
+            </Button>
+          ) : (
+            ""
+          )}
+          {authentication.userid === user.userid ? (
+            <Button
+              onClick={() =>
+                navigate(`/myLetters/editLetter/${letter.messageid}`)
+              }
+              className="cursor-pointer"
+            >
+              Edit
+            </Button>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     </div>
   );

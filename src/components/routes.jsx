@@ -8,6 +8,7 @@ import Admin from "./Admin";
 import UserInfo from "./UserInfo";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import EditLetter from "./EditLetter";
 
 const routes = [
   {
@@ -17,7 +18,9 @@ const routes = [
       { index: true, element: <Letters /> },
       { path: ":page", element: <Letters /> },
       { path: "/myLetters", element: <MyLetters /> },
+      { path: "/myLetters/:page", element: <MyLetters /> },
       { path: "/myLetters/deleteLetter/:id", element: <DeleteLetter /> },
+      { path: "/myLetters/editLetter/:id", element: <EditLetter /> },
       { path: "/addLetter", element: <AddLetter /> },
       { path: "/membership", element: <Membership /> },
       { path: "/admin", element: <Admin /> },

@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/pagination";
 
 export default function Letters() {
+  const { authentication } = useContext(States);
   const { letters } = useContext(States);
   const { page } = useParams();
   const [currentPage, setCurrentPage] = useState(page ? parseInt(page) : 1);
@@ -75,8 +76,8 @@ export default function Letters() {
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectItem value="Newest">Newest</SelectItem>
             <SelectItem value="Oldest">Oldest</SelectItem>
+            <SelectItem value="Newest">Newest</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>

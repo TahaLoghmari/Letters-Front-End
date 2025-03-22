@@ -67,7 +67,9 @@ function App() {
   if (authentication) {
     return (
       <ThemeProvider defaultTheme="dark">
-        <States.Provider value={{ letters, setLetters }}>
+        <States.Provider
+          value={{ letters, setLetters, authentication, setAuthentication }}
+        >
           <div className="flex flex-row  bg-accent items-center w-full p-3 ">
             <Link to="/" className="justify-self-start">
               <Hexagon className="w-12 h-auto text-accent-foreground flex items-center hover:bg-primary hover:text-primary-foreground transition-all duration-200 p-2 rounded-sm cursor-pointer" />
@@ -116,9 +118,12 @@ function App() {
                   <NavigationMenuItem>
                     <NavigationMenuTrigger>Settings</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <div className="block px-4 py-2 text-sm cursor-pointer hover:bg-accent rounded-sm">
+                      <Link
+                        className="block px-4 py-2 text-sm cursor-pointer hover:bg-accent rounded-sm"
+                        to="/userInfo"
+                      >
                         Personal
-                      </div>
+                      </Link>
                       <div
                         onClick={handleLogout}
                         className="block px-4 py-2 text-sm cursor-pointer hover:bg-accent rounded-sm"
